@@ -1,0 +1,18 @@
+<div class="pensamento {{ tought.model }} ff=ff-roboto-mono" [ngClass]="getCellSizeClass()">
+    <img src="../../../../assets/imagens/{{tought.model}}.png" alt="Aspas coloridas {{tought.model}}">
+
+    <p class="conteudo"> {{tought.content}} </p>
+    <p class="autoria"><b>{{tought.author}}</b></p>
+
+    <div class="acoes">
+        <button class="botao-favoritar" (click)="favourite()">
+        <img  src="../../../../assets/imagens/{{tought.favourite ? 'favouriteIcon' : 'unFavouriteIcon'}}.png">
+        </button>
+        <button class="botao-editar" (click)="edit()">
+            <img  src="../../../../assets/imagens/icone-editar.png">
+        </button>
+        <button class="botao-excluir" (click)="delete()">
+            <img src="../../../../assets/imagens/icone-excluir.png">
+        </button>
+    </div>
+</div> 

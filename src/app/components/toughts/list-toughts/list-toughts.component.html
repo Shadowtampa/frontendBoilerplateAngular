@@ -1,0 +1,37 @@
+<section class="container">
+    <header class="header d-flex">
+        <h2 *ngIf="toughtSearch === ''" class="ff-inter">{{this.onlyFavourites ? 'Meus pensamentos favoritos' :  'Meu mural'}}</h2>
+
+        <h2 *ngIf="toughtSearch !== ''" class="ff-inter">Buscando: {{toughtSearch}}</h2>
+
+        <button routerLink="/criarPensamento" class="botao">Adicionar pensamento</button>
+
+        <div class="buscar-pensamentos">
+            <input type="search" class="filtro" placeholder="Busque os pensamentos..." [(ngModel)]="toughtSearch"
+                (input)="filterData()" autofocus>
+
+
+            <button class="botao" (click)="fetchFavourites()">Buscar Pensamentos Favoritos</button>
+        </div>
+
+
+
+
+    </header>
+
+    <div class="mural" *ngIf="toughts.length > 0">
+        <div *ngFor="let tought of toughts">
+            <app-tought [tought]=tought></app-tought>
+        </div>
+
+        <app-button-load-more *ngIf="toughtSearch ===''" [hasMoreToughts]="hasMoreToughts"
+            (click)="fetchMoreData()"></app-button-load-more>
+
+    </div>
+
+    <div class="mural" *ngIf="toughts.length  === 0">
+        <h2 class="ff-inter"> VAI PENSAR SEU ARROMBADO</h2>
+
+    </div>
+
+</section>

@@ -1,0 +1,113 @@
+<section class="container criar-pensamentos ff-inter">
+    <header class="header ff-inter">
+        <h2>Adicione um <br> pensamento novo:</h2>
+    </header>
+
+    <form [formGroup]="form">
+        <label for="content">Pensamento</label>
+        <textarea 
+        class="input textarea ff-inter" 
+        formControlName="content" 
+        placeholder="Digite seu pensamento ."
+        ></textarea>
+
+        <div 
+        class="mensagem__erro" 
+        *ngIf="form.get('content')?.errors?.['required'] && form.get('content')?.touched">
+            Conteúdo é obrigatório!
+        </div>
+        <div class="mensagem__erro" *ngIf="form.get('content')?.errors?.['pattern']&& form.get('content')?.touched">
+            Conteúdo não deve ser somente espaço em branco!
+        </div>
+
+        <label>Autor(a) ou Fonte</label>
+        <input 
+        type="text" 
+        class="input ff-inter" 
+        placeholder="Insira o nome do(a) autor(a) ou fonte." 
+        formControlName="author" >
+
+        <div class="mensagem__erro" *ngIf="form.get('author')?.errors?.['required'] && form.get('author')?.touched">
+            Autoria é obrigatória!
+        </div>
+        <div class="mensagem__erro" *ngIf="form.get('author')?.errors?.['minlength'] && form.get('author')?.touched">
+            Autoria deve possuir mínimo de 3 caracteres!
+        </div>
+        <div class="mensagem__erro" *ngIf="form.get('author')?.errors?.['pattern'] && form.get('author')?.touched">
+            Autoria não deve ser somente espaço em branco!
+        </div>
+
+        <label for="modelo">Selecione o modelo do card:</label>
+        <div class="container-radio">
+            <div class="radio-modelo">
+                <label for="modelo1">
+                    <input type="radio" id="modelo1" value="modelo1" formControlName="model">
+                    <div class="custom-radio">
+                        <span></span>
+                    </div>
+                    <span>Modelo 1</span>
+                </label>
+                Prévia: 
+                <div class="modelo modelo1 ff-roboto-mono">
+                    <img src="../../../../assets/imagens/modelo1.png" alt="modelo1">
+                    <p class="conteudo">{{form.get('content')?.value}}
+                    </p>
+                    <p class="autoria"><b>{{form.get('author')?.value}}</b></p>
+                </div>
+                
+
+            </div>
+
+            <div class="radio-modelo">
+                <label for="modelo2">
+                    <input type="radio" id="modelo2" value="modelo2" formControlName="model" >
+                    <div class="custom-radio">
+                        <span></span>
+                    </div>
+                    <span>Modelo 2</span>
+                </label>
+                Prévia: 
+                <div class="modelo modelo1 ff-roboto-mono">
+                    <img src="../../../../assets/imagens/modelo2.png" alt="modelo1">
+                    <p class="conteudo">
+                        {{form.get('content')?.value}}
+                    </p>
+                    <p class="autoria"><b>{{form.get('author')?.value}}</b></p>
+                </div>
+                
+
+            </div>
+
+            <div class="radio-modelo">
+                <label for="modelo3">
+                    <input type="radio" id="modelo3" value="modelo3" formControlName="model">
+                    <div class="custom-radio">
+                        <span></span>
+                    </div>
+                    <span>Modelo 3</span>
+                </label>
+                Prévia: 
+                <div class="modelo modelo1 ff-roboto-mono">
+                    <img src="../../../../assets/imagens/modelo3.png" alt="modelo1">
+                    <p class="conteudo">
+                        {{form.get('content')?.value}}
+                    </p>
+                    <p class="autoria"><b>{{form.get('author')?.value}}</b></p>
+                </div>
+                
+
+            </div>
+        </div>
+
+        <div class="acoes">
+            <button 
+            [disabled] = "!form.valid"
+            (click)="saveThought()" 
+            class="botao ff-inter"
+            [ngClass]="getFormIsValid()"
+            >Salvar</button>
+            <button (click)="clearThought()" class="botao ff-inter">Cancelar</button>
+        </div>
+    </form>
+
+</section>
